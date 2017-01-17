@@ -1,0 +1,271 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html { -webkit-text-size-adjust: 100%; }
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* ---josip styles */ 
+
+
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+	 @include transform(scale($scale));
+} 
+// translate
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+// skew
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+@mixin transition-property($property...) {
+    -moz-transition-property:    $property;
+    -o-transition-property:      $property;
+    -webkit-transition-property: $property;
+    transition-property:         $property;
+}
+@mixin transition-duration($duration...) {
+    -moz-transition-property:    $duration;
+    -o-transition-property:      $duration;
+    -webkit-transition-property: $duration;
+    transition-property:         $duration;
+}
+@mixin transition-timing-function($timing...) {
+    -moz-transition-timing-function:    $timing;
+    -o-transition-timing-function:      $timing;
+    -webkit-transition-timing-function: $timing;
+    transition-timing-function:         $timing;
+}
+@mixin transition-delay($delay...) {
+    -moz-transition-delay:    $delay;
+    -o-transition-delay:      $delay;
+    -webkit-transition-delay: $delay;
+    transition-delay:         $delay;
+}
+
+html {box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+::selection {
+  background: #e3d770; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #e3d770; /* Gecko Browsers */
+}
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+body { background: url("../img/swirl_pattern.png") repeat; font-size: 16px; color: black;  font-family: 'Titillium Web', sans-serif; }
+p {margin-bottom: 1.3em;}
+h1, h2, h3, h4 {
+  font-weight: inherit;
+  line-height: 1.2;
+}
+$primary: #d15e12; 
+
+@keyframes trump_head {
+	0% { @include transform(scale(1));  } 
+	25% { @include transform(scale(2.5));  } 
+	50% { @include transform(scale(5));  } 
+	75% { @include transform(scale(2.5));  } 
+	100% { @include transform(scale(1));  }
+}
+
+.container { width: 95%; margin: 0 auto; background: white;
+	@media screen and (min-width: 480px) { 
+		width: 85%;
+	}
+	@media screen and (min-width: 768px) { 
+		width: 70%; 
+	}
+}
+
+section { padding: 20px 0; border-bottom: 1px solid #ececec; overflow: hidden; width: 100%;
+	.info {
+		width: 100%; 
+		@media screen and (min-width: 768px) { 
+			width: 30%;
+			float: left; 
+			overflow: hidden;
+		}
+		h2 { 
+			float: left;
+			font-weight: bold;
+			font-size: 20px;
+		}
+		.value { float: right; }
+	}
+	.selection {
+		width: 100%;
+		overflow: hidden;
+		padding-left: 0;
+		padding-top: 30px;
+		@media screen and (min-width: 768px) { 
+			width: 70%;
+			float: left;
+			padding-left: 60px;
+			padding-top: 0;
+		}
+	}
+	&.range {
+		#slider {
+			.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+				    background: $primary;
+				    width: 2.8em;
+			}
+		}
+	} 
+	&.politics{}
+	&.education{}
+	&.throw_away_your_tv {}
+	&.dress_style{}
+
+
+}
+header { padding: 40px; overflow: hidden; 
+	svg {
+		width: 100%;
+		display: block;
+		animation: trump_head 1s linear;
+		@media screen and (min-width: 768px) { 
+			max-width: 200px; 
+			float: left;
+			margin-right: 40px;
+		}
+	}
+	h1 {
+		font-size: 30px; 
+		margin-top: 40px;
+		@media screen and (min-width: 768px) {
+			font-size: 40px;
+			margin-top: 60px;
+			line-height: 1;
+		}
+	}
+}
+main { padding: 40px; }
+.box {
+	display: inline-block;
+	background: #ececec;
+	cursor: pointer;
+	width: 100%;
+	float: left;
+	padding: 20px;
+	&:last-child { margin-right: 0; }
+	&:hover { background: #d1946c; }
+	&.active {
+		background: $primary; 
+		color: white;
+	}
+	@media screen and (min-width: 768px) {
+			width: 33.3%; 
+	}
+} 
+.with_image { text-align: center; font-weight: bold; text-transform: uppercase;
+	svg { max-width: 100px; max-height: 150px; display: block; text-align: center; margin: auto; margin-bottom: 20px;
+		@media screen and (min-width: 768px) { max-width: 50px; }
+		@media screen and (min-width: 980px) { max-width: 100px; }
+	}
+	&.active { 
+		svg {}
+	}
+}
+footer{}
+.btn-calc { margin: 20px; text-align: center;
+	@media screen and (min-width: 768px) {
+		margin: 40px;
+	}
+	#calc { background: $primary; border: 0; padding: 20px 80px; font-size: 20px; font-family: 'Titillium Web', sans-serif; color: white; cursor: pointer;
+		    text-decoration: none; display: inline-block;
+	&:hover {
+		background: #d1946c;
+	}
+} 
+}
+.result { display: none;
+	&.active {
+	    width: 100%;
+	    height: 100%;
+	    display: block;
+	    text-align: center;
+		p { margin: 0% 20% 0%; font-size: 30px; line-height: 1.4;
+			span { display: inline; color: red; font-size: 2em; }
+		}
+		#close {
+			background: $primary; 
+			padding: 20px 80px; 
+			color: white; 
+			font-size: 20px; 
+			margin: 40px;
+			text-align: center; 
+			cursor: pointer; 
+			text-decoration: none;
+			text-align: center;
+			display: inline-block;
+			&:hover { 
+				background: #d1946c;
+			}
+		}
+	}
+
+}
